@@ -1,0 +1,19 @@
+section {
+    height: 100vh;
+}
+
+.intro {
+    background: lightblue;
+}
+
+.resume {
+    background: lightgreen;
+}
+
+.other {
+    background: purple;
+}
+
+.contact {
+    background: red;
+}
