@@ -4,8 +4,8 @@ var timeline = anime.timeline({ autoplay: true, direction: 'alternate', loop: fa
 let paths = [
     { name: '.a1', x: 195.47816, y: 152.84847, stroke: '#1f91ac' },
     { name: '.a2', x: 200.09133, y: 152.84847, stroke: '#1f91ac' },
-    { name: '.a3', x: 127.09585, y: 329.962095, stroke: '#0b9444' },
-    { name: '.a4', x: 127.09585, y: 329.962095, fill: '#0b9444' },
+    /*{ name: '.a3', x: 127.09585, y: 329.962095, stroke: '#0b9444' },*/
+    { name: '.a4', x: 200.09133, y: 329.962095, fill: '#0b9444', r: 30 },
 ];
 
 paths.forEach((path, index) => {
@@ -34,6 +34,18 @@ paths.forEach((path, index) => {
             easing: 'easeInOutQuad'
           },
           offset: 0
+        });
+    }
+
+    if (path.r) {
+        timeline
+        .add({
+            targets: path.name,
+            duration: 500,
+            delay: 0,
+            easing: 'easeInOutQuad',
+            r: path.r,
+            offset: 0
         });
     }
 
