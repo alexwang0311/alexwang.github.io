@@ -79,8 +79,7 @@ function setDash(el) {
   return 0;
 }
 
-var animations = [];
-/*
+//var animations = [];
 var animations = [
   { name: '.t1', x: 195.47816, y: 152.84847, stroke: '#dd5d20' },
   { name: '.t2', x: 254.09133, y: 152.65768, stroke: '#0b9444' },
@@ -102,7 +101,6 @@ var animations = [
   { name: '.k3', x: 196.31264, y: 659.39655, fill: '#da3931' },
   { name: '.k4', x: 252.924, y: 599.49118, stroke: '#df871b' }
 ];
-*/
 
 animations.forEach(function(animation, index) {
   if (animation.stroke) {
