@@ -42,15 +42,7 @@ section {
     isolation: isolate;
 }
 
-.resume {
-    background: lightgreen;
-}
-
-.other {
+.home {
     background: white;
-}
-
-.contact {
-    background: red;
 }
 

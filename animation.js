@@ -1,3 +1,4 @@
+/*
 const staggerVisualizerEl = document.querySelector('.stagger-visualizer');
 console.log(staggerVisualizerEl);
 
@@ -67,19 +68,18 @@ const staggersAnimation = anime.timeline({
 
 staggersAnimation.play();
 
-var timeline = anime.timeline({ autoplay: true, direction: 'alternate', loop: true });
+
+
 
 function setDash(el) {
   if (el.nodeName === 'path') {
     el.style.dashArray = anime.setDashoffset(el);
-    //console.log(el, anime.setDashoffset(el));
     return [anime.setDashoffset(el) - 1, 0];
   }
   
   return 0;
 }
 
-//var animations = [];
 var animations = [
   { name: '.t1', x: 195.47816, y: 152.84847, stroke: '#dd5d20' },
   { name: '.t2', x: 254.09133, y: 152.65768, stroke: '#0b9444' },
@@ -102,7 +102,9 @@ var animations = [
   { name: '.k4', x: 252.924, y: 599.49118, stroke: '#df871b' }
 ];
 
+
 animations.forEach(function(animation, index) {
+  let timeline = anime.timeline({ autoplay: true, direction: 'alternate', loop: true });
   if (animation.stroke) {
     timeline
     .add({
@@ -158,12 +160,4 @@ animations.forEach(function(animation, index) {
     offset: 0
   });
 });
-
-timeline
-.add({
-  targets: '.t1',
-  opacity: 1,
-  duration: 1000,
-  delay: 4000,
-  offset: 0
-});
+*/
