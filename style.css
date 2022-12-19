@@ -31,12 +31,16 @@ section {
     isolation: isolate;
 }
 
-.navbar{
+.navbar {
     width:80%;
     margin: 5vh auto;
     left:0;
     right:0;
     padding:0;
+}
+
+.navbar-toggler {
+    border-width: 0;
 }
 
 .navbar-brand {
