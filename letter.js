@@ -3,7 +3,6 @@ let timeline = anime.timeline({ autoplay: true, direction: 'alternate', loop: tr
 function setDash(el) {
     if (el.nodeName === 'path') {
       el.style.dashArray = anime.setDashoffset(el);
-      //console.log(el, anime.setDashoffset(el));
       return [anime.setDashoffset(el) - 1, 0];
     }
     
@@ -39,7 +38,6 @@ let paths = [
 const dotPerRow = 4;
 
 paths.forEach((path, index) => {
-    //let timeline = anime.timeline({ autoplay: true, direction: 'alternate', loop: false, durationn: 300 });
     if (path.stroke) {
         timeline
         .add({
