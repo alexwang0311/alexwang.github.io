@@ -199,7 +199,7 @@ circle.addEventListener("click", onClickHandler);
 
 addEventListener("resize", (e) => {
     console.log("screen size changed");
-    if(smallDevice){
+    if(smallDevice.matches){
         detachMouseMoveListener();
     }
     else{
