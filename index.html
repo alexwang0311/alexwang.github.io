@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.7.0/d3.min.js" integrity="sha512-7RUyhA5mpSkxSGGdw1vL6ZLL2GzWPvf/aQ4M8cpXkZiSpCvWb5rgygK+VzUpyXx4vPc0ahrS53nymFbGOQ7ubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="anime.min.js"></script>
     <title>Alex Wang | alexwang0311.github.io</title>
@@ -150,43 +151,35 @@
             <div class="row">
                 <div class="col-2"></div>
                 <div class="col-1 text-right AB">
-                    <h1 class="about-text AB">AB</h1>
+                    <h1 class="about-text AB-text">AB</h1>
                 </div>
                 <div class="col-6 O">
                     <svg class="o" width="100%" height="100vh">
-                        <circle class="o-left"
-                        style="opacity:1;fill:black;fill-opacity:1;stroke:none;stroke-width:80;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1"
-                        cx="50%"
-                        cy="50%"
-                        r="5%" 
-                        />
+                        <g class="o-group">
+                            <circle class="o-out"
+                            style="opacity:1;fill:white;fill-opacity:1;stroke:none;stroke-width:80;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1"
+                            cx="50%"
+                            cy="50%"
+                            r="5%" 
+                            />
+                            <circle class="o-in"
+                            style="opacity:1;fill:black;fill-opacity:1;stroke:none;stroke-width:80;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1"
+                            cx="50%"
+                            cy="50%"
+                            r="3%" 
+                            />
+                        </g>
                     </svg>
                 </div>
                 <div class="col-1 UT">
-                    <h1 class="about-text UT">UT</h1>
+                    <h1 class="about-text UT-text">UT</h1>
                 </div>
                 <div class="col-2"></div>
             </div>
         </div>
     </section>
     <section id="experience">
-        <div class="container">
-            <div class="row">
-                <div class="col col-lg-8">
-                    <p>
-                        Hello there, I'm Alex, a software engineer with a passion for crafting clean, modern, and efficient code. Whether I'm working on a new app or optimizing an existing system, I always strive to create a polished and intuitive user experience.
-                    </p>
-                    <p>
-                        Since my graduation from Vanderbilt in 2021, I have been working as a software developer at AllianceBernstein. My time there has been primarily focused on back end development on a suite of mission-critical softwares including 
-                        leading design for a new cache architecture and development of a monitoring service for one of AB's portfolio management systems, implementing quantitative models for equity research, as well as fixing various production and migration 
-                        defects on a daily basis.
-                    </p>
-                    <p>
-                        In my freetime, I work as a freelance full-stack web developer. While I'm not coding away on my new projects, I enjoy learning about new technologies, reading, and working out. Here is how I created this website.
-                    </p>
-                </div>
-            </div>
-        </div>
+        
     </section>
     <section id="contact"></section>
 </body>
