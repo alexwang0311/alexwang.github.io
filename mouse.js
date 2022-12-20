@@ -93,14 +93,16 @@ const onClickHandler = (e) => {
                             <br>
                             <p>Whether I'm working on a new app or optimizing an existing system, I always strive to create a polished and intuitive user experience.</p>
                             <br>
-                            <p>In my freetime, I work as a freelance full-stack web developer. While I'm not coding away on my new projects, I enjoy learning about new technologies, reading, and working out. Here is how I created this website.</p>`);
+                            <p>In my freetime, I work as a freelance full-stack web developer. While I'm not coding away on my new projects, I enjoy learning about 
+                            new technologies, reading, and working out. <a href="#">Here</a> is how I created this website.</p>`);
                 }
                 else{
                     body.html(`<h5>I'm Alex, a software engineer with a passion for crafting clean, modern, and efficient code.</h5>
                             <br>
                             <p>Whether I'm working on a new app or optimizing an existing system, I always strive to create a polished and intuitive user experience.</p>
                             <br>
-                            <p>In my freetime, I work as a freelance full-stack web developer. While I'm not coding away on my new projects, I enjoy learning about new technologies, reading, and working out. Here is how I created this website.</p>`);
+                            <p>In my freetime, I work as a freelance full-stack web developer. While I'm not coding away on my new projects, I enjoy learning about 
+                            new technologies, reading, and working out. <a href="#">Here</a> is how I created this website.</p>`);
                 }   
             }
         });
@@ -172,7 +174,8 @@ addEventListener("resize", (e) => {
                  <br>
                  <p>Whether I'm working on a new app or optimizing an existing system, I always strive to create a polished and intuitive user experience.</p>
                  <br>
-                 <p>In my freetime, I work as a freelance full-stack web developer. While I'm not coding away on my new projects, I enjoy learning about new technologies, reading, and working out. Here is how I created this website.</p>`);
+                 <p>In my freetime, I work as a freelance full-stack web developer. While I'm not coding away on my new projects, I enjoy learning about 
+                 new technologies, reading, and working out. <a href="#">Here</a> is how I created this website.</p>`);
         }
         else{
             xhtml.select("body")
@@ -181,7 +184,8 @@ addEventListener("resize", (e) => {
                  <br>
                  <p>Whether I'm working on a new app or optimizing an existing system, I always strive to create a polished and intuitive user experience.</p>
                  <br>
-                 <p>In my freetime, I work as a freelance full-stack web developer. While I'm not coding away on my new projects, I enjoy learning about new technologies, reading, and working out. Here is how I created this website.</p>`);
+                 <p>In my freetime, I work as a freelance full-stack web developer. While I'm not coding away on my new projects, I enjoy learning about 
+                 new technologies, reading, and working out. <a href="#">Here</a> is how I created this website.</p>`);
         }
     }
 });
