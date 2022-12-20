@@ -114,7 +114,58 @@ const smText = `<h5>I'm Alex, a software engineer with a passion for crafting cl
                 <p>In my freetime, I work as a freelance full-stack web developer. While I'm not coding away on my new <a href="https://github.com/alexwang0311" target="_blank">projects</a>, I enjoy learning about 
                     new technologies, reading, and working out. <a href="#">Here</a> is how I created this website.</p>`;
 
-const onClickHandler = (e) => {
+const smOnClickHandler = (e) => {
+    if(!zoomedIn){
+        detachTouchMoveListener();
+        zoomedIn = true;
+        anime({
+            targets: [".o-group"],
+            translateY: "40%",
+            complete: function() {
+                const svg = document.querySelector(".o");
+                const scrollHeight = svg.scrollHeight;
+                //console.log(scrollHeight);
+                const g = d3.select(".o")
+                            .append('g')
+                            .attr("class", "o-text")
+                            .attr('transform', `translate(0, ${scrollHeight * 0.2})`);
+                const body = g.append("foreignObject")
+                                .attr("width", "100%")
+                                .attr("height", "60%")
+                                .style("overflow-y", "scroll")
+                                .append("xhtml:body")
+                                .style("font", "14px 'prompt-light'")
+                                .style("color", "black")
+                                .style("background-color", "transparent");
+                body.html(smText);
+            }
+        });
+        anime({
+            targets: [".AB"],
+            translateY: "40%",
+            translateX: "100%",
+        });
+        anime({
+            targets: [".UT"],
+            translateY: "40%",
+            translateX: "-100%",
+        });
+    }
+    else{
+        const el = document.getElementsByClassName("o-text");
+        //console.log(el);
+        el[0].remove();
+        attachTouchMoveListener();
+        zoomedIn = false;
+        anime({
+            targets: [".o-group", ".AB", ".UT"],
+            translateY: 0,
+            translateX: 0,
+        });
+    }
+}
+
+const lgOnClickHandler = (e) => {
     console.log("clicked");
     if(!zoomedIn){
         detachMouseMoveListener();
@@ -198,45 +249,57 @@ const onClickHandler = (e) => {
 }
 
 const circle = document.querySelector(".o-group");
-circle.addEventListener("click", onClickHandler);
+if(smallDevice.matches){
+    circle.addEventListener("click", smOnClickHandler);
+}
+else{
+    circle.addEventListener("click", lgOnClickHandler);
+}
 
 addEventListener("resize", (e) => {
     console.log("screen size changed");
     if(smallDevice.matches){
         detachMouseMoveListener();
+        setUpListeners();
+        if(zoomedIn){
+            const svg = document.querySelector(".o");
+            const scrollHeight = svg.scrollHeight;
+            const g = d3.select(".o-text")
+                        .attr('transform', `translate(0, ${scrollHeight * 0.2})`);
+        }
     }
     else{
         detachTouchMoveListener();
-    }
-    setUpListeners();
-    if(zoomedIn){
-        const circle = document.querySelector(".o-in");
-        const svg = document.querySelector(".o");
-        const scrollWidth = svg.scrollWidth;
-        const radius = circle.r.animVal.value;
-        const cx = circle.cx.animVal.value;
-        const cy = circle.cy.animVal.value;
-                
-        const isFullCircle = scrollWidth >= radius * 2;
-        const width = isFullCircle ? 2 * radius * Math.cos(Math.PI / 4) : scrollWidth;
-        const height = isFullCircle ? 2 * radius * Math.cos(Math.PI / 4) : 2 * Math.sqrt(Math.pow(radius, 2) - Math.pow(scrollWidth / 2, 2));
-        const dx = isFullCircle ? cx - radius * Math.sin(Math.PI / 4) : cx - scrollWidth / 2;
-        const dy = isFullCircle ? cy - radius * Math.cos(Math.PI / 4) : cy - height / 2;
-        //console.log(dx, dy);
-        const g = d3.select(".o-text")
-                    .attr('transform', 'translate(' + [dx, dy] + ')');
-        const xhtml = g.select("foreignObject")
-                        .attr("width", width)
-                        .attr("height", height);
-        if(isFullCircle){
-            xhtml.select("body")
-                 .html("")
-                 .html(lgText);
-        }
-        else{
-            xhtml.select("body")
-                 .html("")
-                 .html(smText);
+        setUpListeners();
+        if(zoomedIn){
+            const circle = document.querySelector(".o-in");
+            const svg = document.querySelector(".o");
+            const scrollWidth = svg.scrollWidth;
+            const radius = circle.r.animVal.value;
+            const cx = circle.cx.animVal.value;
+            const cy = circle.cy.animVal.value;
+                    
+            const isFullCircle = scrollWidth >= radius * 2;
+            const width = isFullCircle ? 2 * radius * Math.cos(Math.PI / 4) : scrollWidth;
+            const height = isFullCircle ? 2 * radius * Math.cos(Math.PI / 4) : 2 * Math.sqrt(Math.pow(radius, 2) - Math.pow(scrollWidth / 2, 2));
+            const dx = isFullCircle ? cx - radius * Math.sin(Math.PI / 4) : cx - scrollWidth / 2;
+            const dy = isFullCircle ? cy - radius * Math.cos(Math.PI / 4) : cy - height / 2;
+            //console.log(dx, dy);
+            const g = d3.select(".o-text")
+                        .attr('transform', 'translate(' + [dx, dy] + ')');
+            const xhtml = g.select("foreignObject")
+                            .attr("width", width)
+                            .attr("height", height);
+            if(isFullCircle){
+                xhtml.select("body")
+                     .html("")
+                     .html(lgText);
+            }
+            else{
+                xhtml.select("body")
+                     .html("")
+                     .html(smText);
+            }
         }
     }
 });
