@@ -139,6 +139,7 @@ const smOnClickHandler = (e) => {
                                 .style("color", "black")
                                 .style("background-color", "transparent");
                 body.html(smText);
+                section.scrollIntoView();
             }
         });
         anime({
