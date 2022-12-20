@@ -75,6 +75,7 @@ const setUpListeners = () => {
         section.addEventListener("touchstart", (e) => {
             console.log("touched about section");
             attachTouchMoveListener();
+            moveCircle(e);
         });
 
         section.addEventListener("touchend", (e) => {
