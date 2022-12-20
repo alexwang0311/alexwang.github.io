@@ -143,6 +143,14 @@ const smOnClickHandler = (e) => {
             }
         });
         anime({
+            targets: ".o-out",
+            fill: "#000000"
+        });
+        anime({
+            targets: ".o-in",
+            fill: "#ffffff"
+        });
+        anime({
             targets: [".AB"],
             translateY: "40%",
             translateX: "100%",
@@ -163,6 +171,14 @@ const smOnClickHandler = (e) => {
             targets: [".o-group", ".AB", ".UT"],
             translateY: 0,
             translateX: 0,
+        });
+        anime({
+            targets: ".o-out",
+            fill: "#ffffff"
+        });
+        anime({
+            targets: ".o-in",
+            fill: "#000000"
         });
     }
 }
