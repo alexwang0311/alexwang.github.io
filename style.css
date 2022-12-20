@@ -17,6 +17,10 @@ section {
     align-items: center;
 }
 
+h1 {
+    font-family: prompt-semibold;
+}
+
 .svg {
     display: block;
     margin: 0 auto;
@@ -52,18 +56,41 @@ section {
 }
 
 #home {
-    background: white;
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 71%, rgba(192,244,255,1) 100%);;
 }
 
 #about {
-    background: lightblue
+    background: rgb(192,244,255);
+    background: linear-gradient(180deg, rgba(192,244,255,1) 0%, rgba(192,255,247,1) 79%, rgba(192,255,212,1) 100%);
 }
 
 #experience {
-    background: lightgreen
+    background: rgb(192,255,212);
+    background: linear-gradient(180deg, rgba(192,255,212,1) 0%, rgba(192,255,240,1) 79%, rgba(255,192,244,1) 100%);
 }
 
 #contact {
-    background: lightpink
+    background: rgb(255,192,244);
+    background: linear-gradient(180deg, rgba(255,192,244,1) 0%, rgba(255,255,255,1) 30%, rgba(255,255,255,1) 100%);
 }
 
+.AB {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.UT {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.about-text {
+    margin: 0;
+}
+
+.o-left:hover {
+    cursor: pointer; 
+}
