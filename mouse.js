@@ -118,6 +118,7 @@ const smOnClickHandler = (e) => {
     if(!zoomedIn){
         detachTouchMoveListener();
         zoomedIn = true;
+        section.scrollIntoView();
         anime({
             targets: [".o-group"],
             translateY: "40%",
