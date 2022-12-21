@@ -254,6 +254,7 @@ const lgOnClickHandler = (e) => {
                 else{
                     body.html(smText);
                 }
+                document.querySelector(".o-text").addEventListener("click", lgOnClickHandler);
                 section.scrollIntoView();
                 anime({
                     targets: ".o-text",
@@ -275,6 +276,7 @@ const lgOnClickHandler = (e) => {
         });
     }
     else{
+        if(e.target.tagName.toLowerCase() == "a") return; //guard against click on 'a' elements
         zoomedIn = false;
         const el = document.getElementsByClassName("o-text");
         //console.log(el);
@@ -305,19 +307,26 @@ const lgOnClickHandler = (e) => {
     }
 }
 
-const circle = document.querySelector(".o-group");
-if(smallDevice.matches){
-    circle.addEventListener("click", smOnClickHandler);
+const attachClickHandler = () => {
+    const circle = document.querySelector(".o-group");
+    if(smallDevice.matches){
+        circle.addEventListener("click", smOnClickHandler);
+    }
+    else{
+        circle.addEventListener("click", lgOnClickHandler);
+    }
 }
-else{
-    circle.addEventListener("click", lgOnClickHandler);
-}
+
+attachClickHandler();
 
 addEventListener("resize", (e) => {
     console.log("screen size changed");
+    const circle = document.querySelector(".o-group");
     if(smallDevice.matches){
+        circle.removeEventListener("click", lgOnClickHandler);
         detachMouseMoveListener();
         setUpListeners();
+        attachClickHandler();
         if(zoomedIn){
             const svg = document.querySelector(".o");
             const scrollHeight = svg.scrollHeight;
@@ -326,8 +335,10 @@ addEventListener("resize", (e) => {
         }
     }
     else{
+        circle.removeEventListener("click", smOnClickHandler);
         detachTouchMoveListener();
         setUpListeners();
+        attachClickHandler();
         if(zoomedIn){
             const circle = document.querySelector(".o-in");
             const svg = document.querySelector(".o");

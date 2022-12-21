@@ -104,6 +104,10 @@ h1 {
     cursor: pointer; 
 }
 
+.o-text:hover {
+    cursor: pointer;
+}
+
 ::-webkit-scrollbar {
     display: none;
 }
