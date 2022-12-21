@@ -208,6 +208,7 @@ const lgOnClickHandler = (e) => {
     if(!zoomedIn){
         detachMouseMoveListener();
         zoomedIn = true;
+        section.scrollIntoView();
         anime({
             targets: [".o-out", ".o-in"],
             r: "30%",
@@ -231,6 +232,7 @@ const lgOnClickHandler = (e) => {
                 const g = d3.select(".o")
                             .append('g')
                             .attr("class", "o-text")
+                            .style("opacity", 0)
                             .attr('transform', 'translate(' + [dx, dy] + ')');
                 const body = g.append("foreignObject")
                                 .attr("width", width)
@@ -245,7 +247,14 @@ const lgOnClickHandler = (e) => {
                 }
                 else{
                     body.html(smText);
-                }   
+                }
+                section.scrollIntoView();
+                anime({
+                    targets: ".o-text",
+                    opacity: 1,
+                    duration: 1000,
+                    easing: 'easeOutSine',
+                }); 
             }
         });
         anime({
