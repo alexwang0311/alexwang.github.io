@@ -109,13 +109,10 @@ const setUpListeners = () => {
                 const displacementY = startY - endY;
                 //console.log(displacementY);
                 const text = document.querySelector("foreignObject");
-                text.scrollTop = displacementY;
-                /*
                 setTimeout(text.scroll({
                     top: displacementY,
                     behavior: "smooth"
                 }), 100);
-                */
                 return;
             }
             console.log("ended touching about section");
@@ -170,7 +167,7 @@ const smOnClickHandler = (e) => {
                 const body = g.append("foreignObject")
                                 .attr("width", "100%")
                                 .attr("height", "60%")
-                                .style("overflow-y", "scroll")
+                                .style("overflow", "auto")
                                 .append("xhtml:body")
                                 .style("font", "14px 'prompt-light'")
                                 .style("color", "black")
@@ -183,7 +180,6 @@ const smOnClickHandler = (e) => {
                     duration: 1000,
                     easing: 'easeOutSine',
                 });
-                //document.querySelector(".o-text").addEventListener()
             }
         });
         anime({
