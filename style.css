@@ -115,7 +115,3 @@ h1 {
 ::-webkit-scrollbar {
     display: none;
 }
-
-foreignObject {
-    -webkit-overflow-scrolling: touch;
-}
