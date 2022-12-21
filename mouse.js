@@ -85,6 +85,7 @@ const detachTouchMoveListener = () => {
     }
 }
 
+/*
 let startY = 0;
 let prevDisplacement = 0;
 let atTop = true;
@@ -108,10 +109,12 @@ const scrollHandler = (e) => {
     }
     console.log(prevDisplacement);
 }
+*/
 
 const setUpListeners = () => {
     if(smallDevice.matches) {
         section.addEventListener("touchstart", (e) => {
+            /*
             if(e.target.getAttribute("class") == "text-body"){
                 if (e.cancelable) e.preventDefault();
                 startY = e.touches[0].clientY;
@@ -120,6 +123,7 @@ const setUpListeners = () => {
                 console.log("started scrolling");
                 return;
             }
+            */
             console.log("touched about section");
             attachTouchMoveListener();
             if(!zoomedIn)
@@ -129,6 +133,7 @@ const setUpListeners = () => {
         });
 
         section.addEventListener("touchend", (e) => {
+            /*
             if(e.target.getAttribute("class") == "text-body"){
                 e.preventDefault();
                 const text = document.querySelector("foreignObject");
@@ -142,10 +147,10 @@ const setUpListeners = () => {
                     top: displacementY,
                     behavior: "smooth"
                 }), 100);
-                */
                console.log("scrolling ended");
                 return;
             }
+            */
             console.log("ended touching about section");
             detachTouchMoveListener();
         });
@@ -189,6 +194,7 @@ const smOnClickHandler = (e) => {
             complete: function() {
                 const svg = document.querySelector(".o");
                 const scrollHeight = svg.scrollHeight;
+                /*
                 const g = d3.select(".o")
                             .append('g')
                             .attr("class", "o-text")
@@ -199,6 +205,20 @@ const smOnClickHandler = (e) => {
                                 .attr("width", "100%")
                                 .attr("height", bodyHeight)
                                 .style("overflow", "auto")
+                                .append("xhtml:body")
+                                .style("font", "14px 'prompt-light'")
+                                .style("color", "black")
+                                .style("background-color", "transparent");
+                */
+                const g = d3.select("#about")
+                            .append('div')
+                            .attr("class", "o-text")
+                            .style("opacity", 0)
+                            .style("position", "absolute")
+                            .style("right", "20%")
+                            .style("left", "20%")
+                            .style("z-index", 1)
+                const body = g.append("foreignObject")
                                 .append("xhtml:body")
                                 .style("font", "14px 'prompt-light'")
                                 .style("color", "black")
