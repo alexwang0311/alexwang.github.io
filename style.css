@@ -118,5 +118,6 @@ h1 {
 
 foreignObject {
     position: relative;
+    z-index: 2;
     -webkit-overflow-scrolling: touch;
 }

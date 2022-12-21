@@ -86,6 +86,13 @@ const detachTouchMoveListener = () => {
 }
 
 let startY = 0;
+const scroll = (e) => {
+    e.preventDefault();
+    const displacement = startY - e.touches[0].clientY;
+    const text = document.querySelector("foreignObject");
+    text.scrollBy(0, displacement);
+    console.log("scrolled:", displacement);
+}
 
 const setUpListeners = () => {
     if(smallDevice.matches) {
@@ -93,6 +100,8 @@ const setUpListeners = () => {
             if(e.target.getAttribute("class") == "text-body"){
                 e.preventDefault();
                 startY = e.touches[0].clientY;
+                const text = document.querySelector("foreignObject");
+                text.addEventListener("touchmove", scroll);
                 return;
             }
             console.log("touched about section");
@@ -106,6 +115,9 @@ const setUpListeners = () => {
         section.addEventListener("touchend", (e) => {
             if(e.target.getAttribute("class") == "text-body"){
                 e.preventDefault();
+                const text = document.querySelector("foreignObject");
+                text.removeEventListener("touchmove", scroll);
+                /*
                 const endY = e.changedTouches[0].clientY;
                 const displacementY = startY - endY;
                 //console.log(displacementY);
@@ -114,6 +126,7 @@ const setUpListeners = () => {
                     top: displacementY,
                     behavior: "smooth"
                 }), 100);
+                */
                 return;
             }
             console.log("ended touching about section");
