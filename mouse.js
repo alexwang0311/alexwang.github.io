@@ -92,6 +92,7 @@ const setUpListeners = () => {
         section.addEventListener("touchstart", (e) => {
             if(e.target.getAttribute("class") == "text-body"){
                 e.preventDefault();
+                document.querySelector(".AB-text").setAttribute("style", "color: red !important");
                 startY = e.touches[0].clientY;
                 return;
             }
@@ -105,6 +106,7 @@ const setUpListeners = () => {
 
         section.addEventListener("touchend", (e) => {
             if(e.target.getAttribute("class") == "text-body"){
+                document.querySelector(".AB-text").setAttribute("style", "color: green !important");
                 const endY = e.changedTouches[0].clientY;
                 const displacementY = startY - endY;
                 //console.log(displacementY);
