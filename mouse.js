@@ -87,30 +87,12 @@ const detachTouchMoveListener = () => {
 
 let startY = 0;
 
-const scroll = (e) => {
-    e.preventDefault();
-    console.log("scrolling");
-}
-
-const attachScrollListener = () => {
-    const text = document.querySelector(".o-text");
-    text.addEventListener("touchmove", scroll);
-}
-
-const detachScrollListener = () => {
-    const text = document.querySelector(".o-text");
-    text.removeEventListener("touchmove", scroll);
-}
-
 const setUpListeners = () => {
     if(smallDevice.matches) {
         section.addEventListener("touchstart", (e) => {
             if(e.target.getAttribute("class") == "text-body"){
-                //attachScrollListener();
-                //console.log("attached scroll listener");
                 e.preventDefault();
-                startY = e.touches[0].clientY ?? -1;
-                if(startY == -1) console.log("startY is -1");
+                startY = e.touches[0].clientY;
                 return;
             }
             console.log("touched about section");
@@ -123,8 +105,6 @@ const setUpListeners = () => {
 
         section.addEventListener("touchend", (e) => {
             if(e.target.getAttribute("class") == "text-body"){
-                //detachScrollListener();
-                //console.log("detached scroll listener");
                 const endY = e.changedTouches[0].clientY;
                 const displacementY = startY - endY;
                 //console.log(displacementY);
