@@ -144,6 +144,7 @@ const smOnClickHandler = (e) => {
                 const g = d3.select(".o")
                             .append('g')
                             .attr("class", "o-text")
+                            .style("opacity", 0)
                             .attr('transform', `translate(0, ${scrollHeight * 0.2})`);
                 const body = g.append("foreignObject")
                                 .attr("width", "100%")
@@ -155,6 +156,12 @@ const smOnClickHandler = (e) => {
                                 .style("background-color", "transparent");
                 body.html(smText);
                 section.scrollIntoView();
+                anime({
+                    targets: ".o-text",
+                    opacity: 1,
+                    duration: 1000,
+                    easing: 'easeOutSine',
+                });
             }
         });
         anime({
