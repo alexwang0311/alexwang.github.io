@@ -92,6 +92,10 @@ h1 {
     align-items: center;
 }
 
+.O {
+    z-index: 1;
+}
+
 .UT-text {
     color: black
 }
