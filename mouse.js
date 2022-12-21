@@ -121,12 +121,12 @@ const lgText = `<h3>I am a software engineer with a passion for crafting clean, 
                 <p>Whether I'm working on a new app or optimizing an existing system, I always strive to create an intuitive and visually pleasing user experience - not settling for less.</p>
                 <p>In my freetime, I work as a freelance full-stack web developer. While I'm not coding away on my new <a href="https://github.com/alexwang0311" target="_blank">projects</a>, I enjoy learning about 
                     digital design, reading about software architecture, and working out. <a href="#">Here</a> is how I created this website.</p>`;
-const smText = `<div>
+const smText = `<div z-index="1">
                 <h5>I am a software engineer with a passion for crafting clean, modern, and efficient solutions.</h5>
                 <br>
                 <p>Whether I'm working on a new app or optimizing an existing system, I always strive to create an intuitive and visually pleasing user experience - not settling for less.</p>
-                <p>In my freetime, I work as a freelance full-stack web developer. While I'm not coding away on my new <a href="https://github.com/alexwang0311" z-index="1" target="_blank">projects</a>, I enjoy learning about 
-                    digital design, reading about software architecture, and working out. <a href="#" z-index="1">Here</a> is how I created this website.</p>
+                <p>In my freetime, I work as a freelance full-stack web developer. While I'm not coding away on my new <a href="https://github.com/alexwang0311" z-index="2" target="_blank">projects</a>, I enjoy learning about 
+                    digital design, reading about software architecture, and working out. <a href="#" z-index="2">Here</a> is how I created this website.</p>
                 </div>`;
 
 const smOnClickHandler = (e) => {
