@@ -210,8 +210,14 @@ const lgOnClickHandler = (e) => {
         zoomedIn = true;
         section.scrollIntoView();
         anime({
-            targets: [".o-out", ".o-in"],
+            targets: ".o-out",
+            r: "32%",
+            fill: "#000000",
+        })
+        anime({
+            targets: [".o-in"],
             r: "30%",
+            fill: "#ffffff",
             duration: 500,
             delay: anime.stagger(100),
             easing: 'easeInOutQuad',
@@ -240,7 +246,7 @@ const lgOnClickHandler = (e) => {
                                 .style("overflow-y", "scroll")
                                 .append("xhtml:body")
                                 .style("font", "14px 'prompt-light'")
-                                .style("color", "white")
+                                .style("color", "black")
                                 .style("background-color", "transparent");
                 if(isFullCircle){
                     body.html(lgText);
@@ -259,11 +265,13 @@ const lgOnClickHandler = (e) => {
         });
         anime({
             targets: ".AB",
-            translateX: "-40%"
+            translateX: ["-70%", 0],
+            duration: 1500,
         });
         anime({
             targets: ".UT",
-            translateX: "40%"
+            translateX: ["70%", 0],
+            duration: 1500,
         });
     }
     else{
@@ -275,12 +283,14 @@ const lgOnClickHandler = (e) => {
         anime({
             targets: ".o-out",
             r: "5%",
+            fill: "#ffffff",
             duration: 500,
             easing: 'easeInOutQuad'
         });
         anime({
             targets: ".o-in",
             r: "3%",
+            fill: "#000000",
             duration: 500,
             easing: 'easeInOutQuad'
         });
