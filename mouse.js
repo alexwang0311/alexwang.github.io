@@ -3,20 +3,35 @@ const smallDevice = window.matchMedia("(max-width: 576px)");
 const section = document.querySelector("#about");
 let zoomedIn = false;
 
-const moveCircle = (e) => {
+const lgMoveCircle = (e) => {
     const svg = document.querySelector(".o");
     const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
     const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-    let pctX = 0;
-    let pctY = 0;
-    if(smallDevice.matches) {
-        pctX = (e.touches[0].clientX - vw / 2) / (vw / 2);
-        pctY = (e.touches[0].clientY - vh / 2) / (vh / 2);
-    }
-    else {
-        pctX = (e.clientX - vw / 2) / (vw / 2);
-        pctY = (e.clientY - vh / 2) / (vh / 2);
-    }
+    const pctX = (e.clientX - vw / 2) / (vw / 2);
+    const pctY = (e.clientY - vh / 2) / (vh / 2);
+    anime({
+        targets: [".o-out"],
+        translateX: pctX * svg.scrollWidth * 0.8 / 2,
+        duration: 100,
+        easing: 'easeOutSine'
+    });
+    anime({
+        targets: ".o-in",
+        translateX: pctX * svg.scrollWidth * 0.85 / 2,
+        translateY: `${pctY * 2}%`,
+        duration: 100,
+        easing: 'easeOutSine'
+    });
+}
+
+const smMoveCircle = (e) => {
+    const svg = document.querySelector(".o");
+    const circle = document.querySelector(".o-group");
+    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    const pctX = (e.touches[0].clientX - vw / 2) / (vw / 2);
+    const circleClientY = circle.getBoundingClientRect().top;
+    //console.log(circleClientY, e.touches[0].clientY);
+    const pctY = circleClientY > e.touches[0].clientY ? -0.5 : 0.5;
     anime({
         targets: [".o-out"],
         translateX: pctX * svg.scrollWidth * 0.8 / 2,
@@ -34,14 +49,14 @@ const moveCircle = (e) => {
 
 const attachMouseMoveListener = () => {
     if(!zoomedIn){
-        section.addEventListener("mousemove", moveCircle);
+        section.addEventListener("mousemove", lgMoveCircle);
         console.log("attached mouse move listener");
     }
 }
 
 const detachMouseMoveListener = () => {
     if(!zoomedIn){
-        section.removeEventListener("mousemove", moveCircle);
+        section.removeEventListener("mousemove", lgMoveCircle);
         console.log("removed mouse move listener");
         anime({
             targets: [".o-out", ".o-in"],
@@ -53,14 +68,14 @@ const detachMouseMoveListener = () => {
 
 const attachTouchMoveListener = () => {
     if(!zoomedIn){
-        section.addEventListener("touchmove", moveCircle);
+        section.addEventListener("touchmove", smMoveCircle);
         console.log("attached touch move listener");
     }
 }
 
 const detachTouchMoveListener = () => {
     if(!zoomedIn){
-        section.removeEventListener("touchmove", moveCircle);
+        section.removeEventListener("touchmove", smMoveCircle);
         console.log("removed touch move listener");
         anime({
             targets: [".o-out", ".o-in"],
@@ -77,7 +92,7 @@ const setUpListeners = () => {
             attachTouchMoveListener();
             if(!zoomedIn)
             {
-                moveCircle(e);
+                smMoveCircle(e);
             }
         });
 
@@ -101,13 +116,13 @@ const setUpListeners = () => {
 
 setUpListeners();
 
-const lgText = `<h3>I'm Alex, a software engineer with a passion for crafting clean, modern, and efficient code.</h3>
+const lgText = `<h3>Hello, I'm Alex, a software engineer with a passion for crafting clean, modern, and efficient code.</h3>
                 <br>
                 <p>Whether I'm working on a new app or optimizing an existing system, I always strive to create a polished and intuitive user experience.</p>
                 <br>
                 <p>In my freetime, I work as a freelance full-stack web developer. While I'm not coding away on my new <a href="https://github.com/alexwang0311" target="_blank">projects</a>, I enjoy learning about 
                     new technologies, reading, and working out. <a href="#">Here</a> is how I created this website.</p>`;
-const smText = `<h5>I'm Alex, a software engineer with a passion for crafting clean, modern, and efficient code.</h5>
+const smText = `<h5>Hello, I'm Alex, a software engineer with a passion for crafting clean, modern, and efficient code.</h5>
                 <br>
                 <p>Whether I'm working on a new app or optimizing an existing system, I always strive to create a polished and intuitive user experience.</p>
                 <br>
