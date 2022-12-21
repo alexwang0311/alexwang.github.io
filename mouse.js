@@ -189,15 +189,15 @@ const smOnClickHandler = (e) => {
             complete: function() {
                 const svg = document.querySelector(".o");
                 const scrollHeight = svg.scrollHeight;
-                //console.log(scrollHeight);
                 const g = d3.select(".o")
                             .append('g')
                             .attr("class", "o-text")
                             .style("opacity", 0)
                             .attr('transform', `translate(0, ${scrollHeight * 0.2})`);
+                const bodyHeight = window.innerHeight * 0.6;
                 const body = g.append("foreignObject")
                                 .attr("width", "100%")
-                                .attr("height", "60vh")
+                                .attr("height", bodyHeight)
                                 .style("overflow", "auto")
                                 .append("xhtml:body")
                                 .style("font", "14px 'prompt-light'")
