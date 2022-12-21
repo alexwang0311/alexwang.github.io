@@ -88,10 +88,10 @@ const detachTouchMoveListener = () => {
 let startY = 0;
 const scroll = (e) => {
     e.preventDefault();
-    const displacement = startY - e.touches[0].clientY;
-    const text = document.querySelector("foreignObject");
-    text.scrollBy(0, displacement);
-    console.log("scrolled:", displacement);
+    const displacement = e.touches[0].clientY - startY;
+    const text = document.querySelector(".text-body");
+    text.setAttribute("style", `transform: translate(0, ${displacement}px)`)
+    //console.log("scrolled:", displacement);
 }
 
 const setUpListeners = () => {
