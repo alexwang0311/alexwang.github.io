@@ -105,6 +105,7 @@ const setUpListeners = () => {
 
         section.addEventListener("touchend", (e) => {
             if(e.target.getAttribute("class") == "text-body"){
+                e.preventDefault();
                 const endY = e.changedTouches[0].clientY;
                 const displacementY = startY - endY;
                 //console.log(displacementY);
