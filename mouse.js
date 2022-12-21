@@ -86,22 +86,38 @@ const detachTouchMoveListener = () => {
 }
 
 let startY = 0;
-const scroll = (e) => {
+let prevDisplacement = 0;
+let atTop = true;
+const scrollHandler = (e) => {
     e.preventDefault();
-    const displacement = e.touches[0].clientY - startY;
+    const displacement = startY - e.changedTouches[0].clientY;
+    const dir = displacement > 0 ? -1 : 1; //up: -1, down: 1
     const text = document.querySelector(".text-body");
-    text.setAttribute("style", `transform: translate(0, ${displacement}px)`)
-    //console.log("scrolled:", displacement);
+    const body = document.querySelector(".o-text");
+    const diff = text.scrollHeight - body.getBoundingClientRect().height;
+    const d = prevDisplacement + dir * 1;
+    console.log(dir == -1 ? "up" : "down");
+    if(d >= diff || d <= -diff || (atTop && dir == 1)) return;
+    text.setAttribute("style", `transform: translate(0, ${d}px)`)
+    if(atTop && dir == -1){
+        atTop = false;
+    }
+    prevDisplacement = d;
+    if(!atTop && prevDisplacement == 0){
+        atTop = true;
+    }
+    console.log(prevDisplacement);
 }
 
 const setUpListeners = () => {
     if(smallDevice.matches) {
         section.addEventListener("touchstart", (e) => {
             if(e.target.getAttribute("class") == "text-body"){
-                e.preventDefault();
+                if (e.cancelable) e.preventDefault();
                 startY = e.touches[0].clientY;
                 const text = document.querySelector("foreignObject");
-                text.addEventListener("touchmove", scroll);
+                text.addEventListener("touchmove", scrollHandler);
+                console.log("started scrolling");
                 return;
             }
             console.log("touched about section");
@@ -116,7 +132,7 @@ const setUpListeners = () => {
             if(e.target.getAttribute("class") == "text-body"){
                 e.preventDefault();
                 const text = document.querySelector("foreignObject");
-                text.removeEventListener("touchmove", scroll);
+                text.removeEventListener("touchmove", scrollHandler);
                 /*
                 const endY = e.changedTouches[0].clientY;
                 const displacementY = startY - endY;
@@ -127,6 +143,7 @@ const setUpListeners = () => {
                     behavior: "smooth"
                 }), 100);
                 */
+               console.log("scrolling ended");
                 return;
             }
             console.log("ended touching about section");
@@ -180,7 +197,7 @@ const smOnClickHandler = (e) => {
                             .attr('transform', `translate(0, ${scrollHeight * 0.2})`);
                 const body = g.append("foreignObject")
                                 .attr("width", "100%")
-                                .attr("height", "60%")
+                                .attr("height", "60vh")
                                 .style("overflow", "auto")
                                 .append("xhtml:body")
                                 .style("font", "14px 'prompt-light'")
