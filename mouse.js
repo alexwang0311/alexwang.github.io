@@ -116,18 +116,16 @@ const setUpListeners = () => {
 
 setUpListeners();
 
-const lgText = `<h3>Hello, I'm Alex, a software engineer with a passion for crafting clean, modern, and efficient solutions.</h3>
+const lgText = `<h3>I am a software engineer with a passion for crafting clean, modern, and efficient solutions.</h3>
                 <br>
-                <p>Whether I'm working on a new app or optimizing an existing system, I always strive to create a polished and intuitive user experience.</p>
-                <br>
+                <p>Whether I'm working on a new app or optimizing an existing system, I always strive to create an intuitive and visually pleasing user experience - not settling for less.</p>
                 <p>In my freetime, I work as a freelance full-stack web developer. While I'm not coding away on my new <a href="https://github.com/alexwang0311" target="_blank">projects</a>, I enjoy learning about 
-                    new technologies, reading, and working out. <a href="#">Here</a> is how I created this website.</p>`;
-const smText = `<h5>Hello, I'm Alex, a software engineer with a passion for crafting clean, modern, and efficient solutions.</h5>
+                    digital design, reading about software architecture, and working out. <a href="#">Here</a> is how I created this website.</p>`;
+const smText = `<h5>I am a software engineer with a passion for crafting clean, modern, and efficient solutions.</h5>
                 <br>
-                <p>Whether I'm working on a new app or optimizing an existing system, I always strive to create a polished and intuitive user experience.</p>
-                <br>
+                <p>Whether I'm working on a new app or optimizing an existing system, I always strive to create an intuitive and visually pleasing user experience - not settling for less.</p>
                 <p>In my freetime, I work as a freelance full-stack web developer. While I'm not coding away on my new <a href="https://github.com/alexwang0311" target="_blank">projects</a>, I enjoy learning about 
-                    new technologies, reading, and working out. <a href="#">Here</a> is how I created this website.</p>`;
+                    digital design, reading about software architecture, and working out. <a href="#">Here</a> is how I created this website.</p>`;
 
 const smOnClickHandler = (e) => {
     if(!zoomedIn){
