@@ -109,10 +109,13 @@ const setUpListeners = () => {
                 const displacementY = startY - endY;
                 //console.log(displacementY);
                 const text = document.querySelector("foreignObject");
+                text.scrollTop = displacementY;
+                /*
                 setTimeout(text.scroll({
                     top: displacementY,
                     behavior: "smooth"
                 }), 100);
+                */
                 return;
             }
             console.log("ended touching about section");
