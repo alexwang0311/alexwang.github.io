@@ -488,6 +488,13 @@ addEventListener("resize", (e) => {
             body.html(lgText);
             d3.select(".o-text")
                 .style("opacity", 1);
+            const textBox = document.querySelector("foreignObject body div");
+            const outerBox = document.querySelector(".o-text");
+            const outerHeight = outerBox.getBoundingClientRect().height;
+            console.log(textBox.clientHeight, outerHeight);
+            if(textBox.clientHeight < outerHeight) {
+                textBox.setAttribute("style", `transform: translateY(${(outerHeight - textBox.clientHeight) / 2}px)`);
+            }
         }
         circle.removeEventListener("click", smOnClickHandler);
         detachTouchMoveListener();
