@@ -8,6 +8,16 @@
     src: url(Prompt-Light.ttf);
 }
 
+@font-face {
+    font-family: prompt-medium;
+    src: url(Prompt-Medium.ttf);
+}
+
+@font-face {
+    font-family: prompt-thin;
+    src: url(Prompt-Thin.ttf);
+}
+
 section {
     height: 100vh;
     width: 100%;

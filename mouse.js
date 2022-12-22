@@ -85,45 +85,9 @@ const detachTouchMoveListener = () => {
     }
 }
 
-/*
-let startY = 0;
-let prevDisplacement = 0;
-let atTop = true;
-const scrollHandler = (e) => {
-    e.preventDefault();
-    const displacement = startY - e.changedTouches[0].clientY;
-    const dir = displacement > 0 ? -1 : 1; //up: -1, down: 1
-    const text = document.querySelector(".text-body");
-    const body = document.querySelector(".o-text");
-    const diff = text.scrollHeight - body.getBoundingClientRect().height;
-    const d = prevDisplacement + dir * 1;
-    console.log(dir == -1 ? "up" : "down");
-    if(d >= diff || d <= -diff || (atTop && dir == 1)) return;
-    text.setAttribute("style", `transform: translate(0, ${d}px)`)
-    if(atTop && dir == -1){
-        atTop = false;
-    }
-    prevDisplacement = d;
-    if(!atTop && prevDisplacement == 0){
-        atTop = true;
-    }
-    console.log(prevDisplacement);
-}
-*/
-
 const setUpListeners = () => {
     if(smallDevice.matches) {
         section.addEventListener("touchstart", (e) => {
-            /*
-            if(e.target.getAttribute("class") == "text-body"){
-                if (e.cancelable) e.preventDefault();
-                startY = e.touches[0].clientY;
-                const text = document.querySelector("foreignObject");
-                text.addEventListener("touchmove", scrollHandler);
-                console.log("started scrolling");
-                return;
-            }
-            */
             console.log("touched about section");
             attachTouchMoveListener();
             if(!zoomedIn)
@@ -133,24 +97,6 @@ const setUpListeners = () => {
         });
 
         section.addEventListener("touchend", (e) => {
-            /*
-            if(e.target.getAttribute("class") == "text-body"){
-                e.preventDefault();
-                const text = document.querySelector("foreignObject");
-                text.removeEventListener("touchmove", scrollHandler);
-                /*
-                const endY = e.changedTouches[0].clientY;
-                const displacementY = startY - endY;
-                //console.log(displacementY);
-                const text = document.querySelector("foreignObject");
-                setTimeout(text.scroll({
-                    top: displacementY,
-                    behavior: "smooth"
-                }), 100);
-               console.log("scrolling ended");
-                return;
-            }
-            */
             console.log("ended touching about section");
             detachTouchMoveListener();
         });
@@ -175,11 +121,11 @@ const lgText = `<h3>I am a software engineer with a passion for crafting clean, 
                 <p>Whether I'm working on a new app or optimizing an existing system, I always strive to create an intuitive and visually pleasing user experience - not settling for less.</p>
                 <p>In my freetime, I work as a freelance full-stack web developer. While I'm not coding away on my new <a href="https://github.com/alexwang0311" target="_blank">projects</a>, I enjoy learning about 
                     digital design, reading about software architecture, and working out. <a href="#">Here</a> is how I created this website.</p>`;
-const smText = `<div class="text-body" z-index="1">
-                    <h5 class="text-body">I am a software engineer with a passion for crafting clean, modern, and efficient solutions.</h5>
+const smText = `<div class="o-text-body" z-index="1">
+                    <h4 class="o-text-body-header" style="font: 17px 'prompt-light'; opacity: 0">I am a software engineer with a passion for crafting clean, modern, and efficient solutions.</h4>
                     <br>
-                    <p class="text-body">Whether I'm working on a new app or optimizing an existing system, I always strive to create an intuitive and visually pleasing user experience - not settling for less.</p>
-                    <p class="text-body">In my freetime, I work as a freelance full-stack web developer. While I'm not coding away on my new <a href="https://github.com/alexwang0311" z-index="2" target="_blank">projects</a>, I enjoy learning about 
+                    <p class="o-text-body-content" style="opacity: 0">Whether I'm working on a new app or optimizing an existing system, I always strive to create an intuitive and visually pleasing user experience - not settling for less.</p>
+                    <p class="o-text-body-content" style="opacity: 0">In my freetime, I work as a freelance full-stack web developer. While I'm not coding away on my new <a href="https://github.com/alexwang0311" z-index="2" target="_blank">projects</a>, I enjoy learning about 
                         digital design, reading about software architecture, and working out. <a href="#" z-index="2">Here</a> is how I created this website.</p>
                 </div>`;
 
@@ -192,28 +138,9 @@ const smOnClickHandler = (e) => {
             targets: [".o-group"],
             translateY: "40%",
             complete: function() {
-                const svg = document.querySelector(".o");
-                const scrollHeight = svg.scrollHeight;
-                /*
-                const g = d3.select(".o")
-                            .append('g')
-                            .attr("class", "o-text")
-                            .style("opacity", 0)
-                            .attr('transform', `translate(0, ${scrollHeight * 0.2})`);
-                const bodyHeight = window.innerHeight * 0.6;
-                const body = g.append("foreignObject")
-                                .attr("width", "100%")
-                                .attr("height", bodyHeight)
-                                .style("overflow", "auto")
-                                .append("xhtml:body")
-                                .style("font", "14px 'prompt-light'")
-                                .style("color", "black")
-                                .style("background-color", "transparent");
-                */
                 const g = d3.select("#about")
                             .append('div')
                             .attr("class", "o-text")
-                            .style("opacity", 0)
                             .style("position", "absolute")
                             .style("right", "20%")
                             .style("left", "20%")
@@ -226,9 +153,10 @@ const smOnClickHandler = (e) => {
                 body.html(smText);
                 section.scrollIntoView();
                 anime({
-                    targets: ".o-text",
+                    targets: [".o-text-body-header", ".o-text-body-content"],
                     opacity: 1,
                     duration: 1000,
+                    delay: anime.stagger(1000),
                     easing: 'easeOutSine',
                 });
             }
