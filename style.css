@@ -27,6 +27,17 @@ section {
     align-items: center;
 }
 
+@media (orientation: landscape) {
+    section {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
 h1 {
     font-family: prompt-semibold;
 }
