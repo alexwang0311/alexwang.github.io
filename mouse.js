@@ -206,7 +206,7 @@ const smOnClickHandler = (e) => {
 }
 
 const lgOnClickHandler = (e) => {
-    console.log("clicked");
+    console.log("clicked on lg device");
     if(!zoomedIn){
         detachMouseMoveListener();
         zoomedIn = true;
@@ -229,17 +229,14 @@ const lgOnClickHandler = (e) => {
             easing: 'easeInOutQuad',
             complete: function() {
                 const circle = document.querySelector(".o-in");
-                const svg = document.querySelector(".o");
-                const scrollWidth = svg.scrollWidth;
                 const radius = circle.r.animVal.value;
                 const cx = circle.cx.animVal.value + 2;
                 const cy = circle.cy.animVal.value;
 
-                const isFullCircle = scrollWidth >= radius * 2;
-                const width = isFullCircle ? 2 * radius * Math.cos(Math.PI / 4) : scrollWidth;
-                const height = isFullCircle ? 2 * radius * Math.cos(Math.PI / 4) : 2 * Math.sqrt(Math.pow(radius, 2) - Math.pow(scrollWidth / 2, 2));
-                const dx = isFullCircle ? cx - radius * Math.sin(Math.PI / 4) : cx - scrollWidth / 2;
-                const dy = isFullCircle ? cy - radius * Math.cos(Math.PI / 4) : cy - height / 2;
+                const width = 2 * radius * Math.cos(Math.PI / 4);
+                const height = 2 * radius * Math.cos(Math.PI / 4);
+                const dx = cx - radius * Math.sin(Math.PI / 4);
+                const dy = cy - radius * Math.cos(Math.PI / 4);
 
                 const g = d3.select(".o")
                             .append('g')
@@ -325,9 +322,11 @@ const attachClickHandler = () => {
     const circle = document.querySelector(".o-group");
     if(smallDevice.matches){
         circle.addEventListener("click", smOnClickHandler);
+        console.log("attached sm click handler");
     }
     else{
         circle.addEventListener("click", lgOnClickHandler);
+        console.log("attached lg click handler");
     }
 }
 
@@ -337,10 +336,6 @@ addEventListener("resize", (e) => {
     console.log("screen size changed");
     const circle = document.querySelector(".o-group");
     if(smallDevice.matches && isSmallDevice){
-        //circle.removeEventListener("click", lgOnClickHandler);
-        //detachMouseMoveListener();
-        //setUpListeners();
-        //attachClickHandler();
         if(zoomedIn){
             const svg = document.querySelector(".o");
             const scrollHeight = svg.scrollHeight;
@@ -349,10 +344,6 @@ addEventListener("resize", (e) => {
         }
     }
     else if(!smallDevice.matches && !isSmallDevice){
-        //circle.removeEventListener("click", smOnClickHandler);
-        //detachTouchMoveListener();
-        //setUpListeners();
-        //attachClickHandler();
         if(zoomedIn){
             const svg = document.querySelector(".o");
             const scrollWidth = svg.scrollWidth;
@@ -393,17 +384,102 @@ addEventListener("resize", (e) => {
     else if(smallDevice.matches && !isSmallDevice){
         console.log("from lg device to sm device");
         isSmallDevice = true;
+        if(zoomedIn){
+            const el = document.querySelector(".o-text");
+            //console.log(el);
+            el.remove();
+
+            d3.select(".o-out")
+                .attr("r", "5%")
+                .style("fill", "#000000");
+            d3.select(".o-in")
+                .attr("r", "3%")
+                .style("fill", "#ffffff");
+            d3.select(".o-group")
+                .style("transform", "translateY(40%)");
+
+            const g = d3.select("#about")
+                            .append('div')
+                            .attr("class", "o-text")
+                            .style("position", "absolute")
+                            .style("right", "20%")
+                            .style("left", "20%")
+                            .style("z-index", 1)
+            const body = g.append("foreignObject")
+                                .append("xhtml:body")
+                                .style("font", "14px 'prompt-light'")
+                                .style("color", "black")
+                                .style("background-color", "transparent");
+            body.html(smText);
+            d3.select(".o-text-body-header")
+                .style("opacity", 1);
+            d3.selectAll(".o-text-body-content")
+                .style("opacity", 1);
+            
+            d3.select(".AB")
+                .style("transform", "translateY(40%)  translateX(100%)");
+            d3.select(".UT")
+                .style("transform", "translateY(40%)  translateX(-100%)");
+        }
         circle.removeEventListener("click", lgOnClickHandler);
         detachMouseMoveListener();
-        setUpListeners();
+        if(!zoomedIn) setUpListeners();
         attachClickHandler();
     }
     else{
         console.log("from sm device to lg device");
         isSmallDevice = false;
+        if(zoomedIn){
+            const el = document.querySelector(".o-text");
+            //console.log(el);
+            el.remove();
+
+            d3.select(".o-group")
+                .style("transform", "translateY(0)");
+            d3.select(".AB")
+                .style("transform", "translateX(0)  translateY(0)");
+            d3.select(".UT")
+                .style("transform", "translateX(0)  translateY(0)");
+            const svg = document.querySelector(".o");
+            const w = svg.clientWidth;
+            const h = svg.clientHeight;
+            d3.select(".o-out")
+                .attr("r", (svg.scrollWidth / 2 - 1) / (Math.sqrt((Math.pow(w, 2) + Math.pow(h, 2)) / 2)) * 100 + "%");
+            d3.select(".o-in")
+                .attr("r", (svg.scrollWidth / 2 - 8) / (Math.sqrt((Math.pow(w, 2) + Math.pow(h, 2)) / 2)) * 100 + "%");
+
+            const circle = document.querySelector(".o-in");
+            const radius = circle.r.animVal.value;
+            const cx = circle.cx.animVal.value + 2;
+            const cy = circle.cy.animVal.value;
+
+            const width = 2 * radius * Math.cos(Math.PI / 4);
+            const height = 2 * radius * Math.cos(Math.PI / 4);
+            const dx = cx - radius * Math.sin(Math.PI / 4);
+            const dy = cy - radius * Math.cos(Math.PI / 4);
+
+            const g = d3.select(".o")
+                        .append('g')
+                        .attr("class", "o-text")
+                        .style("opacity", 0)
+                        .attr('transform', 'translate(' + [dx, dy] + ')');
+            const body = g.append("foreignObject")
+                            .attr("width", width)
+                            .attr("height", height)
+                            .style("overflow-y", "scroll")
+                            .append("xhtml:body")
+                            .style("z-index", 1)
+                            .style("position", "relative")
+                            .style("font", "14px 'prompt-light'")
+                            .style("color", "black")
+                            .style("background-color", "transparent");
+            body.html(lgText);
+            d3.select(".o-text")
+                .style("opacity", 1);
+        }
         circle.removeEventListener("click", smOnClickHandler);
         detachTouchMoveListener();
-        setUpListeners();
+        if(!zoomedIn) setUpListeners();
         attachClickHandler();
     }
 });
