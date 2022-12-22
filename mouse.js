@@ -310,11 +310,13 @@ const lgOnClickHandler = (e) => {
         });
         anime({
             targets: ".AB",
-            translateX: "20%"
+            translateX: ["30%", 0],
+            duration: 1500,
         });
         anime({
             targets: ".UT",
-            translateX: "-20%"
+            translateX: ["-30%", 0],
+            duration: 1500,
         });
     }
 }
