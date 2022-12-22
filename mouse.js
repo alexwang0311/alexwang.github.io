@@ -31,7 +31,6 @@ const smMoveCircle = (e) => {
     const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
     const pctX = (e.touches[0].clientX - vw / 2) / (vw / 2);
     const circleClientY = circle.getBoundingClientRect().top;
-    //console.log(circleClientY, e.touches[0].clientY);
     const pctY = circleClientY > e.touches[0].clientY ? -0.5 : 0.5;
     anime({
         targets: [".o-out"],
@@ -86,32 +85,45 @@ const detachTouchMoveListener = () => {
     }
 }
 
-const setUpListeners = () => {
-    if(smallDevice.matches) {
-        section.addEventListener("touchstart", (e) => {
-            console.log("touched about section");
-            attachTouchMoveListener();
-            if(!zoomedIn)
-            {
-                smMoveCircle(e);
-            }
-        });
+const setupMouseEnterListener = (e) => {
+    console.log("mouse entered about section");
+    attachMouseMoveListener();
+}
 
-        section.addEventListener("touchend", (e) => {
-            console.log("ended touching about section");
-            detachTouchMoveListener();
-        });
+const setupMouseLeaveListener = (e) => {
+    console.log("mouse left about section");
+    detachMouseMoveListener();
+}
+
+const setupTouchStartListener = (e) => {
+    console.log("touched about section");
+    attachTouchMoveListener();
+    if(!zoomedIn)
+    {
+        smMoveCircle(e);
+    }
+}
+
+const setupTouchEndListener = (e) => {
+    console.log("ended touching about section");
+    detachTouchMoveListener();
+}
+
+const setUpListeners = () => {
+    section.removeEventListener("mouseenter", setupMouseEnterListener);
+    section.removeEventListener("mouseleave", setupMouseLeaveListener);
+    section.removeEventListener("touchstart", setupTouchStartListener);
+    section.removeEventListener("touchend", setupTouchEndListener);
+
+    if(smallDevice.matches) {
+        section.addEventListener("touchstart", setupTouchStartListener);
+
+        section.addEventListener("touchend", setupTouchEndListener);
     }
     else {
-        section.addEventListener("mouseenter", (e) => {
-            console.log("mouse entered about section");
-            attachMouseMoveListener();
-        });
+        section.addEventListener("mouseenter", setupMouseEnterListener);
 
-        section.addEventListener("mouseleave", (e) => {
-            console.log("mouse left about section");
-            detachMouseMoveListener();
-        });
+        section.addEventListener("mouseleave", setupMouseLeaveListener);
     }
 }
 
@@ -362,7 +374,7 @@ addEventListener("resize", (e) => {
             const height = isFullCircle ? 2 * radius * Math.cos(Math.PI / 4) : 2 * Math.sqrt(Math.pow(radius, 2) - Math.pow(scrollWidth / 2, 2));
             const dx = isFullCircle ? cx - radius * Math.sin(Math.PI / 4) : cx - scrollWidth / 2;
             const dy = isFullCircle ? cy - radius * Math.cos(Math.PI / 4) : cy - height / 2;
-            //console.log(dx, dy);
+
             const g = d3.select(".o-text")
                         .attr('transform', 'translate(' + [dx, dy] + ')');
             const xhtml = g.select("foreignObject")
@@ -386,7 +398,6 @@ addEventListener("resize", (e) => {
         isSmallDevice = true;
         if(zoomedIn){
             const el = document.querySelector(".o-text");
-            //console.log(el);
             el.remove();
 
             d3.select(".o-out")
@@ -423,7 +434,9 @@ addEventListener("resize", (e) => {
         }
         circle.removeEventListener("click", lgOnClickHandler);
         detachMouseMoveListener();
-        if(!zoomedIn) setUpListeners();
+        if(!zoomedIn) {
+            setUpListeners();
+        }
         attachClickHandler();
     }
     else{
@@ -431,7 +444,6 @@ addEventListener("resize", (e) => {
         isSmallDevice = false;
         if(zoomedIn){
             const el = document.querySelector(".o-text");
-            //console.log(el);
             el.remove();
 
             d3.select(".o-group")
@@ -479,7 +491,10 @@ addEventListener("resize", (e) => {
         }
         circle.removeEventListener("click", smOnClickHandler);
         detachTouchMoveListener();
-        if(!zoomedIn) setUpListeners();
+        if(!zoomedIn) {
+            detachTouchMoveListener();
+            setUpListeners();
+        }
         attachClickHandler();
     }
 });
