@@ -62,7 +62,7 @@ var observer = new IntersectionObserver(function(entries) {
         $(window).scroll(function(e) {
             const distance = document.documentElement.scrollTop - start;
             //console.log(document.documentElement.scrollTop);
-            if(distance <= (1 * height + (window.innerHeight - height) / 2)){
+            if(distance <= (1 * height + (window.innerHeight - height) * 0.4)){
                 //console.log(distance);
                 const pct = distance / (1 * height + (window.innerHeight - height) * 0.4);
                 tl.seek(tl.duration * pct);
