@@ -1,6 +1,4 @@
-let totalTime = 10000;
 const tl = anime.timeline({
-    //duration: totalTime,
     easing: "linear",
     autoplay: false
 });
@@ -39,15 +37,7 @@ tl.add({
         return [`${index % 2 == 0 ? "-" : ""}200%`, 0];
     },
     duration: 2000,
-}, "-=1000")
-/*
-.add({
-    targets: ["#block-2-2", "#block-3-2", "#block-4-2"],
-    opacity: 1,
-    delay: anime.stagger(500),
-    duration: 2000,
-});
-*/
+}, "-=1000");
 
 let hasSeen = false;
 let finished = false;
@@ -63,13 +53,13 @@ var observer = new IntersectionObserver(function(entries) {
             const distance = document.documentElement.scrollTop - start;
             //console.log(document.documentElement.scrollTop);
             if(distance <= (1 * height + (window.innerHeight - height) * 0.4)){
-                //console.log(distance);
-                const pct = distance / (1 * height + (window.innerHeight - height) * 0.4);
+                const pct = Math.max(0, distance / (1 * height + (window.innerHeight - height) * 0.4));
+                //console.log(pct);
                 tl.seek(tl.duration * pct);
             }
             else{
+                tl.seek(tl.duration);
                 if(!finished){
-                    tl.seek(tl.duration);
                     anime({
                         targets: ["#block-2-2", "#block-3-2", "#block-4-2"],
                         opacity: 1,
@@ -85,34 +75,3 @@ var observer = new IntersectionObserver(function(entries) {
 }, { threshold: [0] });
 
 observer.observe(document.querySelector("#block"));
-/*
-function isScrolledIntoView(el) {
-    var rect = el.getBoundingClientRect();
-    var elemTop = rect.top;
-    var elemBottom = rect.bottom;
-
-    // Only completely visible elements return true:
-    //var isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
-    // Partially visible elements return true:
-    isVisible = elemTop < window.innerHeight && elemBottom >= 0;
-    return isVisible;
-}
-
-let blockIsVisible = isScrolledIntoView(document.querySelector("#block"));
-console.log(blockIsVisible);
-
-$(window).scroll(function(e) {
-    if(isScrolledIntoView(document.querySelector("#block"))){
-        if(!blockIsVisible){
-            console.log("visible!", window.scrollY);
-            blockIsVisible = true;
-        }
-    }
-    else{
-        if(blockIsVisible){
-            console.log("invisible!", window.scrollY);
-            blockIsVisible = false;
-        }
-    }
- });
-*/
