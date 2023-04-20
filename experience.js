@@ -47,14 +47,15 @@ var observer = new IntersectionObserver(function(entries) {
 	if(entries[0].isIntersecting && !hasSeen){
         hasSeen = true;
         const start = document.documentElement.scrollTop;
-        //console.log('Element has just become visible in screen', start);
+        // console.log('Element has just become visible in screen', start);
         const height = document.querySelector("#block").getBoundingClientRect().height;
         $(window).scroll(function(e) {
             const distance = document.documentElement.scrollTop - start;
-            //console.log(document.documentElement.scrollTop);
-            if(distance <= (1 * height + (window.innerHeight - height) * 0.4)){
-                const pct = Math.max(0, distance / (1 * height + (window.innerHeight - height) * 0.4));
-                //console.log(pct);
+            // console.log(document.documentElement.scrollTop);
+            if(distance <= (1 * height + (window.innerHeight - height) * 0.25)){
+                let pct = distance / (1 * height + (window.innerHeight - height) * 0.25);
+                // if(pct > 0.98) pct = 1
+                console.log(pct);
                 tl.seek(tl.duration * pct);
             }
             else{
@@ -66,7 +67,7 @@ var observer = new IntersectionObserver(function(entries) {
                         delay: anime.stagger(500),
                         duration: 2000,
                     });
-                    console.log("done");
+                    console.log("done", distance);
                     finished = true;
                 }
             }

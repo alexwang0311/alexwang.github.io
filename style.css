@@ -126,3 +126,54 @@ h1 {
 ::-webkit-scrollbar {
     display: none;
 }
+
+.block-link {
+    font-family: prompt-semibold;
+    color: white;
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.block-link-articles {
+    font-size: xxx-large;
+}
+
+.block-link-articles:hover {
+    color:black
+}
+
+.block-link-experience {
+    font-size: xx-large;
+}
+
+.block-link-experience:hover{
+    color:black;
+}
+
+.block-link-projects {
+    font-size: x-large;
+}
+
+.block-link-projects:hover {
+    color:black
+}
+
+@media only screen and (max-width: 480px) {
+    .block-link-articles {
+        font-size: x-large;
+    }
+    
+    .block-link-experience {
+        font-size: small;
+    }
+    
+    .block-link-projects {
+        font-size: small;
+    }
+}
+
+.block-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
