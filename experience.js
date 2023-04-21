@@ -47,31 +47,57 @@ var observer = new IntersectionObserver(function(entries) {
 	if(entries[0].isIntersecting && !hasSeen){
         hasSeen = true;
         const start = document.documentElement.scrollTop;
-        // console.log('Element has just become visible in screen', start);
+        console.log('Element has just become visible in screen', start);
+        const bottom = document.querySelector("#block").getBoundingClientRect().bottom;
+        
         const height = document.querySelector("#block").getBoundingClientRect().height;
-        $(window).scroll(function(e) {
-            const distance = document.documentElement.scrollTop - start;
-            // console.log(document.documentElement.scrollTop);
-            if(distance <= (1 * height + (window.innerHeight - height) * 0.25)){
-                let pct = distance / (1 * height + (window.innerHeight - height) * 0.25);
-                // if(pct > 0.98) pct = 1
-                console.log(pct);
-                tl.seek(tl.duration * pct);
-            }
-            else{
-                tl.seek(tl.duration);
-                if(!finished){
-                    anime({
-                        targets: ["#block-2-2", "#block-3-2", "#block-4-2"],
-                        opacity: 1,
-                        delay: anime.stagger(500),
-                        duration: 2000,
-                    });
-                    console.log("done", distance);
-                    finished = true;
+        
+        if(bottom < 100){
+            console.log("scrolling up")
+            tl.seek(tl.duration)
+            anime({
+                targets: ["#block-2-2", "#block-3-2", "#block-4-2"],
+                opacity: 1,
+                delay: anime.stagger(500),
+                duration: 2000,
+            });
+            $(window).scroll(function(e) {
+                const distance = start - document.documentElement.scrollTop;
+                // console.log(distance);
+                let pct = 0
+                if(distance >= (1 * height + (window.innerHeight - height) * 0.5)){
+                    pct = (distance - (height + (window.innerHeight - height) * 0.5)) / (height + (window.innerHeight - height) * 0.5);
+                    tl.seek(tl.duration * (1 - pct));
                 }
-            }
-        });
+                if(distance < (height + (window.innerHeight - height) * 0.5)){
+                    tl.seek(tl.duration);
+                }
+            })
+        }
+        else{
+            $(window).scroll(function(e) {
+                const distance = document.documentElement.scrollTop - start;
+                // console.log(document.documentElement.scrollTop);
+                if(distance <= (1 * height + (window.innerHeight - height) * 0.25)){
+                    let pct = distance / (1 * height + (window.innerHeight - height) * 0.25);
+                    // console.log(pct);
+                    tl.seek(tl.duration * pct);
+                }
+                else{
+                    tl.seek(tl.duration);
+                    if(!finished){
+                        anime({
+                            targets: ["#block-2-2", "#block-3-2", "#block-4-2"],
+                            opacity: 1,
+                            delay: anime.stagger(500),
+                            duration: 2000,
+                        });
+                        console.log("done", distance);
+                        finished = true;
+                    }
+                }
+            });
+        }
     }
 }, { threshold: [0] });
 
