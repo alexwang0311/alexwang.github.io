@@ -177,3 +177,23 @@ h1 {
     justify-content: center;
     align-items: center;
 }
+
+#block-2-3 div {
+    background-image: repeating-linear-gradient(
+        -45deg,
+        #1f91ac,
+        #1f91ac 30px,
+        transparent 30px,
+        transparent 40px
+    );
+}
+
+#block-4-1 div {
+    background-image: repeating-linear-gradient(
+        -45deg,
+        #df871b,
+        #df871b 25px,
+        transparent 25px,
+        transparent 35px
+    );
+}
