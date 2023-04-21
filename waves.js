@@ -1,8 +1,3 @@
-var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-console.log(width)
-
-if(width > 480){
-
 anime({
   targets: ['.wave-top', '.wave-bot'],
   opacity: 1,
@@ -39,5 +34,4 @@ anime({
       { value: wave4 },
       { value: wave1 },
     ],
-  });
-}
+});
