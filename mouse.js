@@ -130,18 +130,18 @@ const setUpListeners = () => {
 setUpListeners();
 
 const lgText = `<div class="o-text-body">
-                    <h3>I am a software engineer with a passion for crafting clean, modern, and efficient solutions.</h3>
+                    <h3>I am a software engineer at <a href="https://www.microsoft.com/en-us/" target="_blank">Microsoft</a> with a passion for crafting clean, modern, and efficient solutions.</h3>
                     <br>
                     <p>Whether I'm working on a new app or optimizing an existing system, I always strive to create an intuitive and visually pleasing user experience - not settling for less.</p>
-                    <p>In my freetime, I work as a freelance full-stack web developer. While I'm not coding away on my new <a href="https://github.com/alexwang0311" target="_blank">projects</a>, I enjoy learning about 
-                        digital design, reading about software architecture, and working out. <a href="#">Here</a> is how I created this website.</p>
+                    <p>Previously, my work primarily focused on developing trading/accounting systems with a distributed architecture at <a href="https://www.alliancebernstein.com/corporate/en/home.html" target="_blank">AllianceBernstein</a>. While I'm not coding away on my new <a href="https://github.com/alexwang0311" target="_blank">projects</a>, I enjoy learning about 
+                        digital design, reading about software architecture, and working out.</p>
                 </div>`;
-const smText = `<div class="o-text-body" z-index="1">
-                    <h4 class="o-text-body-header" style="font: 17px 'prompt-light'; opacity: 0">I am a software engineer with a passion for crafting clean, modern, and efficient solutions.</h4>
+const smText = `<div class="o-text-body" z-index="1" style="font: 13px 'prompt-light'">
+                    <h5 class="o-text-body-header" style="font: 17px 'prompt-light'; opacity: 0">I am a software engineer at <a href="https://www.microsoft.com/en-us/" target="_blank">Microsoft</a> with a passion for crafting clean, modern, and efficient solutions.</h4>
                     <br>
                     <p class="o-text-body-content" style="opacity: 0">Whether I'm working on a new app or optimizing an existing system, I always strive to create an intuitive and visually pleasing user experience - not settling for less.</p>
-                    <p class="o-text-body-content" style="opacity: 0">In my freetime, I work as a freelance full-stack web developer. While I'm not coding away on my new <a href="https://github.com/alexwang0311" z-index="2" target="_blank">projects</a>, I enjoy learning about 
-                        digital design, reading about software architecture, and working out. <a href="#" z-index="2">Here</a> is how I created this website.</p>
+                    <p class="o-text-body-content" style="opacity: 0">Previously, my work primarily focused on developing trading/accounting systems with a distributed architecture at <a href="https://www.alliancebernstein.com/corporate/en/home.html" target="_blank">AllianceBernstein</a>. While I'm not coding away on my new <a href="https://github.com/alexwang0311" z-index="2" target="_blank">projects</a>, I enjoy learning about 
+                        digital design, reading about software architecture, and working out.</p>
                 </div>`;
 
 const smOnClickHandler = (e) => {
