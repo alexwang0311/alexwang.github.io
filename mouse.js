@@ -130,18 +130,16 @@ const setUpListeners = () => {
 setUpListeners();
 
 const lgText = `<div class="o-text-body">
-                    <h3>I am a software engineer at <a href="https://www.microsoft.com/en-us/" target="_blank">Microsoft</a> with a passion for crafting clean, modern, and efficient solutions.</h3>
+                    <h3>I am a software engineer at <a href="https://aws.amazon.com/certificate-manager/" target="_blank">AWS Certificate Manager</a> with a passion for crafting clean, modern, and efficient solutions.</h3>
                     <br>
                     <p>Whether I'm working on a new app or optimizing an existing system, I always strive to create an intuitive and visually pleasing user experience - not settling for less.</p>
-                    <p>Previously, my work primarily focused on developing trading/accounting systems with a distributed architecture at <a href="https://www.alliancebernstein.com/corporate/en/home.html" target="_blank">AllianceBernstein</a>. While I'm not coding away on my new <a href="https://github.com/alexwang0311" target="_blank">projects</a>, I enjoy learning about 
-                        digital design, reading about software architecture, and working out.</p>
+                    <p>Previously, my work primarily focused on developing IaC toolings at <a href="https://www.microsoft.com/en-us/" target="_blank">Microsoft</a> and trading/accounting systems with a distributed architecture at <a href="https://www.alliancebernstein.com/corporate/en/home.html" target="_blank">AllianceBernstein</a>.</p>
                 </div>`;
 const smText = `<div class="o-text-body" z-index="1" style="font: 13px 'prompt-light'">
-                    <h5 class="o-text-body-header" style="font: 17px 'prompt-light'; opacity: 0">I am a software engineer at <a href="https://www.microsoft.com/en-us/" target="_blank">Microsoft</a> with a passion for crafting clean, modern, and efficient solutions.</h4>
+                    <h5 class="o-text-body-header" style="font: 17px 'prompt-light'; opacity: 0">I am a software engineer at <a href="https://aws.amazon.com/certificate-manager/" target="_blank">AWS Certificate Manager</a> with a passion for crafting clean, modern, and efficient solutions.</h4>
                     <br>
                     <p class="o-text-body-content" style="opacity: 0">Whether I'm working on a new app or optimizing an existing system, I always strive to create an intuitive and visually pleasing user experience - not settling for less.</p>
-                    <p class="o-text-body-content" style="opacity: 0">Previously, my work primarily focused on developing trading/accounting systems with a distributed architecture at <a href="https://www.alliancebernstein.com/corporate/en/home.html" target="_blank">AllianceBernstein</a>. While I'm not coding away on my new <a href="https://github.com/alexwang0311" z-index="2" target="_blank">projects</a>, I enjoy learning about 
-                        digital design, reading about software architecture, and working out.</p>
+                    <p class="o-text-body-content" style="opacity: 0">Previously, my work primarily focused on developing IaC toolings at <a href="https://www.microsoft.com/en-us/" target="_blank">Microsoft</a> and trading/accounting systems with a distributed architecture at <a href="https://www.alliancebernstein.com/corporate/en/home.html" target="_blank">AllianceBernstein</a>.</p>
                 </div>`;
 
 const smOnClickHandler = (e) => {
